@@ -1,0 +1,30 @@
+<div class="dx-fieldset">
+  <div class="dx-field">
+      <div class="dx-field-value">
+          <dx-drop-down-box
+              [(value)]="treeBoxValue"
+              valueExpr="id"
+              displayExpr="name"
+              placeholder="Select a value..."
+              [showClearButton]="true"
+              [dataSource]="lostypes"
+              
+          >
+
+              <div *dxTemplate="let data of 'content'">
+                  <dx-tree-view
+                      [dataSource]="lostypes"
+                      dataStructure="plain"
+                      keyExpr="id"
+                      parentIdExpr="categoryId"
+                      selectionMode="single"
+                      displayExpr="name"
+                      [selectByClick]="true"
+                      (onContentReady)="$event.component.selectItem(treeBoxValue)"
+                      (onItemSelectionChanged)="treeView_itemSelectionChanged($event)"
+                  >
+                  </dx-tree-view>
+              </div>
+          </dx-drop-down-box>
+      </div>
+  </div>
